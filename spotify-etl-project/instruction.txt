@@ -1,0 +1,27 @@
+extract
+    cloudwatch svhelduler
+    creaate s3
+        eventnotification trigger s3-lambda
+    create lambda-exrtract-spotify==>dump in spotify bucket
+        permission
+            s3
+            cloudwatch
+transformed
+    create s3 bucket transformed bucket
+        eventnotification trigger trigger crawaler lambda
+    create s3-lambdas==>dumb data in s3 transformed bucket
+        permission
+            s3
+            cloudwatch
+load
+    create data catalog
+    create crawler
+    create lambda trigger crawaler lambda==>run crawler
+        permission
+            glue
+            cloudwatch
+            s3
+    create s3 athena result
+    athena 
+        permission
+            athena results
